@@ -10,10 +10,18 @@ class App extends Component {
         super(props)
     
         this.state = {
-             results:{}
+             results:{},
+             country:'',
         }
     }
     //#666666
+
+    handleCountryChange = (c)=>{
+        this.setState({
+            country: c
+        })
+        console.log(c);
+    }
     
     //Don't make too many requests!!!
     componentDidMount(){
@@ -37,7 +45,7 @@ class App extends Component {
             <div className="app">
                 <h1>Covid-19 Tracker</h1>
                 <Cards data={results}/>
-                <CountrySelector />
+                <CountrySelector func={this.handleCountryChange}/>
                 <Charts />
                 
             </div>

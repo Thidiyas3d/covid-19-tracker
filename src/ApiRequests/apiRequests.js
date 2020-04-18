@@ -2,6 +2,8 @@ import axios from "axios";
 
 const url = 'https://covid19.mathdro.id/api';
 
+
+//Chart api request
 export const chartApiRequest =async () =>{
 
    try {
@@ -14,7 +16,22 @@ export const chartApiRequest =async () =>{
 
        return modifiedData;
    } catch (error) {
+
        
    }
+}
+
+//CountrySelector api request
+export const countryApiRequest = async() => {
+    try {
+        const response = await fetch(url+'/countries');
+        const {data:{countries}} = await response.json();
+        const country = countries.map((c)=>c.name)
+        return(country);
+        
+    } catch (error) {
+        console.log(error)
+        
+    }
 }
 

@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from 'react'
 import {chartApiRequest} from '../../ApiRequests/apiRequests'
 import {Line, Bar} from 'react-chartjs-2'
-import './charts.css'
+import styles from './Chart.module.css'
 
 const Charts = () =>{
 
@@ -46,7 +46,7 @@ const Charts = () =>{
 
 
     return(
-        <div className="myChart">
+        <div className={styles.myChart}>
             {lineChart}
             
         </div>
