@@ -1,8 +1,9 @@
 import React,{useState,useEffect} from 'react'
 import {NativeSelect, FormControl} from '@material-ui/core'
 import { countryApiRequest } from '../../ApiRequests/apiRequests'
+import './CountrySelector.css'
 
-const CountrySelector = ({ handleCountryChange }) => {
+const CountrySelector = ({handleCountryChange}) => {
 
     const [countryData, setCountryData] = useState([])
 
@@ -11,17 +12,18 @@ const CountrySelector = ({ handleCountryChange }) => {
                 setCountryData(await countryApiRequest()) 
             }
             fetchData();
-    },[countryData])
+    },[])
 
-    console.log(countryData)
     return(
-        <FormControl>
-            <NativeSelect defaultValue="" onChange={(e)=>{handleCountryChange(e.target.value)}}>
-                <option value='global'>Global</option>
-               {/* countryData.length ? { countryData.map((country,index)=><option key={index} value={country}>{country}</option>)} : null*/}
+            <FormControl class="container c">
+            <NativeSelect  onChange={(e)=>handleCountryChange(e.target.value)}>
+                <option value="">Global</option>
+             {countryData.map((country, index)=> <option key={index} value={country}>{country}</option>)}
             </NativeSelect>
         </FormControl>
-    )
+            
+        
+    );
 }
 
 export default CountrySelector

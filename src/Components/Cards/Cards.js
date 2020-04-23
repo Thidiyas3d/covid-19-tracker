@@ -10,24 +10,32 @@ const Cards = ({data:{confirmed,recovered,deaths,lastUpdate}}) =>{
 
         return (
             <>
-            <div className="cards">
-                <div className="card confirmed">
-                <h5>Infected</h5>
-                <CountUp  start={0} end={confirmed.value} duration={2} separator="," />
-                
+            <div className="container list">
+                <div className="card confirmed m-2">
+                    <div className="card-body">
+                        <h3 className="card-title text-primary">Infected</h3>
+                        <h4><CountUp  start={0} end={confirmed.value} duration={2} separator="," /></h4>
+                    </div>
                 </div>
-                <div className="card recovered">
-                <h5>Recovered</h5>
-                <CountUp  start={0} end={recovered.value} duration={2} separator="," />
+                <div className="card recovered m-2">
+                    <div className="card-body">
+                        <h3 className="card-title text-success">Recovered</h3>
+                        <h4><CountUp  start={0} end={recovered.value} duration={2} separator="," /></h4>
+                    </div>
                 </div>
-                <div className="card deaths">
-                <h5>Deaths</h5>
-                <CountUp  start={0} end={deaths.value} duration={2} separator="," />
+                <div className="card deaths m-2">
+                    <div className="card-body">
+                        <h3 className="card-title text-danger">Deaths</h3>
+                        <h4><CountUp  start={0} end={deaths.value} duration={2} separator="," /></h4>
+                    </div>
                 </div>
                 
             </div>
-            <h4 className="last-update">Last updated at {new Date(lastUpdate).toLocaleTimeString()},{new Date(
-                lastUpdate).toDateString()}</h4>
+            <div className="container">
+                <h6 className="text-muted last-update">Last updated at {new Date(lastUpdate).toLocaleTimeString()}, {new Date(
+                lastUpdate).toDateString()}</h6>
+            </div>
+            
             </>
         )
     }

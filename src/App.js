@@ -13,17 +13,24 @@ class App extends Component {
              results:{},
              country:'',
         }
+       
     }
-    //#666666
 
-    handleCountryChange = (c)=>{
-        this.setState({
-            country: c
+    handleCountryChange = async (c)=>{
+        fetch(`https://covid19.mathdro.id/api/countries/${c}`)
+        .then(response => {
+                return response.json();
         })
-        console.log(c);
+        .then(data=> {
+             this.setState({results: data, country : c })
+        })
+        .catch(error=>{
+            console.log(error)
+        })
+    
+        
     }
     
-    //Don't make too many requests!!!
     componentDidMount(){
         fetch('https://covid19.mathdro.id/api')
         .then(response => {
@@ -40,13 +47,16 @@ class App extends Component {
 
 
     render() {
-        const {results} = this.state
+        const {results, country} = this.state
         return(
             <div className="app">
-                <h1>Covid-19 Tracker</h1>
+                <h1 className="covid-19">Covid-19 Tracker</h1>
+                
                 <Cards data={results}/>
-                <CountrySelector func={this.handleCountryChange}/>
-                <Charts />
+
+                <CountrySelector handleCountryChange={this.handleCountryChange}/>
+                
+                <Charts results={results} country={country}/>
                 
             </div>
         )

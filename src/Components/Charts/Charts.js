@@ -1,14 +1,13 @@
 import React,{useState,useEffect} from 'react'
 import {chartApiRequest} from '../../ApiRequests/apiRequests'
 import {Line, Bar} from 'react-chartjs-2'
-import styles from './Chart.module.css'
+import './Charts.css'
 
-const Charts = () =>{
+const Charts = ({results:{confirmed,recovered, deaths}, country}) =>{
 
 
     const [chartData, setChartData] = useState([])
 
-    //useEffect
     useEffect(()=>{
         const fetchData = async()=>{
         setChartData(await chartApiRequest())
@@ -16,6 +15,8 @@ const Charts = () =>{
     fetchData();
     },[])
 
+    
+//Line chart
     const lineChart = (
         //evaluate
         chartData.length
@@ -44,10 +45,27 @@ const Charts = () =>{
             : null
     );
 
+//bar chart
+const barChart = (
+    confirmed ? <Bar 
+        data= {{
+            labels:['Infected', 'Recovered', 'Deaths'],
+            datasets:[{
+                label:['Total'],
+                backgroundColor:['#007bff', 'green' , 'red'],
+                data:[confirmed.value,recovered.value,deaths.value],
+            }]
+        }}
+        options={{
+            title:{display:true, text: `Current state in ${country}`},
+            legend:{display: false}
+        }}
+    /> : null
+)
 
     return(
-        <div className={styles.myChart}>
-            {lineChart}
+        <div className="container charts mb-5">
+            {country ? barChart : lineChart}
             
         </div>
     );

@@ -25,9 +25,9 @@ export const chartApiRequest =async () =>{
 export const countryApiRequest = async() => {
     try {
         const response = await fetch(url+'/countries');
-        const {data:{countries}} = await response.json();
-        const country = countries.map((c)=>c.name)
-        return(country);
+        const {countries}= await response.json();
+        const data = countries.map((c)=>c.name)
+        return(data)
         
     } catch (error) {
         console.log(error)

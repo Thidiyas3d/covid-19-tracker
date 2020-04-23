@@ -1,6 +1,4 @@
-.app{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.covid-19{
+    margin: 15px;
     text-align: center;
 }
