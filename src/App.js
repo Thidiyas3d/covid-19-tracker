@@ -50,7 +50,7 @@ class App extends Component {
         const {results, country} = this.state
         return(
             <div className="app">
-                <h1 className="covid-19">Covid-19 Tracker</h1>
+                <h1 className="covid-19"><b>Covid-19 Tracker</b></h1>
                 
                 <Cards data={results}/>
 
